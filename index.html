@@ -256,8 +256,65 @@
 
             .cards {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.25rem;
+            }
+
+            @media (max-width: 560px) {
+                .cards {
+                    grid-template-columns: none;
+                    grid-auto-flow: column;
+                    grid-auto-columns: 80%;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
+                    padding-bottom: 0.5rem;
+                    scrollbar-width: none;
+                }
+
+                .cards::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .card {
+                    scroll-snap-align: start;
+                }
+            }
+
+            /* ── In-card image placeholder ── */
+            .card-image {
+                position: relative;
+                width: 100%;
+                margin-bottom: 1.1rem;
+                border-radius: 12px;
+                aspect-ratio: 16 / 10;
+                overflow: hidden;
+            }
+
+            .card-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                display: block;
+            }
+
+            .card-image .placeholder-content {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                color: var(--muted);
+                font-size: 0.78rem;
+                text-align: center;
+                padding: 0.75rem;
+            }
+
+            .card-image .placeholder-icon {
+                font-size: 1.7rem;
+                opacity: 0.6;
             }
 
             .card {
@@ -265,14 +322,44 @@
                 border: 1px solid var(--border);
                 border-radius: 16px;
                 padding: 1.75rem;
+                opacity: 0;
                 transition:
                     border-color 0.2s,
-                    transform 0.2s;
+                    box-shadow 0.2s;
+            }
+
+            .card.in-view {
+                animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1)
+                    forwards;
             }
 
             .card:hover {
                 border-color: rgba(255, 228, 0, 0.2);
-                transform: translateY(-3px);
+                box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+            }
+
+            @keyframes cardReveal {
+                from {
+                    opacity: 0;
+                    transform: translateY(28px);
+                }
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+
+            .card-image img {
+                will-change: transform;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .card {
+                    opacity: 1;
+                }
+                .card.in-view {
+                    animation: none;
+                }
             }
 
             .card-icon {
@@ -407,11 +494,13 @@
                 </svg>
             </div>
 
-            <div class="hero-badge"><span></span> Now in beta</div>
-            <h1>Simplest way to <em>start accepting crypto payments</em></h1>
+            <div class="hero-badge">
+                <span></span> Built on Sui &middot; Now in beta
+            </div>
+            <h1>Simplest way to <em>start accepting payments on Sui</em></h1>
             <p class="hero-sub">
-                ArcPay makes it easy to accept, move, and manage crypto with
-                complex features for all your needs.
+                ArcPay makes it easy to accept, move, and manage crypto on the
+                Sui network, with complex features for all your needs.
             </p>
             <div class="hero-actions">
                 <a class="btn-mailto" href="mailto:arcpay.to@proton.me">
@@ -437,35 +526,103 @@
         <!-- Features -->
         <section class="features">
             <p class="section-label">Why ArcPay</p>
-            <h2 class="section-title">
-                Everything you need to accept crypto
-            </h2>
+            <h2 class="section-title">Everything you need to accept crypto</h2>
             <div class="cards">
                 <div class="card">
                     <div class="card-icon">⚡</div>
+                    <div class="card-image">
+                        <img
+                            src="card-1.png"
+                            alt=""
+                            onload="
+                                this.nextElementSibling.style.display = 'none'
+                            "
+                            onerror="this.style.display = 'none'"
+                        />
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🖼️</span>
+                            <span>Replace <code>card-1.png</code></span>
+                        </div>
+                    </div>
                     <h3>Just simple crypto payments.</h3>
                     <p>
-                        One QR code for sellers. One tap for buyers.
-                        No wallets to configure. No integrations to build.
-                        Just crypto payments that work.
+                        One QR code for sellers. One tap for buyers. No wallets
+                        to configure. No integrations to build. Just crypto
+                        payments that work.
                     </p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🛡️</div>
+                    <div class="card-image">
+                        <img
+                            src="card-2.png"
+                            alt=""
+                            onload="
+                                this.nextElementSibling.style.display = 'none'
+                            "
+                            onerror="this.style.display = 'none'"
+                        />
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🖼️</span>
+                            <span>Replace <code>card-2.png</code></span>
+                        </div>
+                    </div>
                     <h3>Complex crypto payments</h3>
-                    <p>Finally, crypto payments that work the way deals actually work.
-                    Set milestones, make offers, split payments, lock funds in escrow, and collect across any currency. All without writing a single line of code.</p>
+                    <p>
+                        Finally, crypto payments that work the way deals
+                        actually work. Set milestones, make offers, split
+                        payments, lock funds in escrow, and collect across any
+                        currency. All without writing a single line of code.
+                    </p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🌍</div>
-                    <h3>Crypto by default</h3>
+                    <div class="card-icon">🤝</div>
+                    <div class="card-image">
+                        <img
+                            src="card-3.png"
+                            alt=""
+                            onload="
+                                this.nextElementSibling.style.display = 'none'
+                            "
+                            onerror="this.style.display = 'none'"
+                        />
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🖼️</span>
+                            <span>Replace <code>card-3.png</code></span>
+                        </div>
+                    </div>
+                    <h3>Buy or make an offer</h3>
                     <p>
-                        Accept payments in 135+ cryptocurrencies and settle in
-                        your preferred currency, with automatic FX handling.
+                        Checkout pages aren't one-way anymore. Buyers can pay
+                        the listed price instantly, or make a crypto offer on
+                        any product. Sellers accept, counter, or decline -
+                        turning every page into a two-way marketplace.
                     </p>
-
-
-
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-image">
+                        <img
+                            src="card-4.png"
+                            alt=""
+                            onload="
+                                this.nextElementSibling.style.display = 'none'
+                            "
+                            onerror="this.style.display = 'none'"
+                        />
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🖼️</span>
+                            <span>Replace <code>card-4.png</code></span>
+                        </div>
+                    </div>
+                    <h3>Native to Sui</h3>
+                    <p>
+                        Built on the Sui network for sub-second finality and
+                        near-zero fees. Accept payments in SUI and other assets,
+                        and settle in your preferred currency with automatic FX
+                        handling.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -491,5 +648,75 @@
             </div>
             <p>&copy; 2026 ArcPay. All rights reserved.</p>
         </footer>
+
+        <script>
+            (function () {
+                var reduceMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
+
+                /* ── Reveal cards on scroll ── */
+                var cards = document.querySelectorAll(".card");
+                if ("IntersectionObserver" in window && !reduceMotion) {
+                    var io = new IntersectionObserver(
+                        function (entries) {
+                            entries.forEach(function (entry) {
+                                if (entry.isIntersecting) {
+                                    entry.target.classList.add("in-view");
+                                    io.unobserve(entry.target);
+                                }
+                            });
+                        },
+                        { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+                    );
+                    cards.forEach(function (card, i) {
+                        card.style.animationDelay = (i % 4) * 0.09 + "s";
+                        io.observe(card);
+                    });
+                } else {
+                    cards.forEach(function (card) {
+                        card.classList.add("in-view");
+                    });
+                }
+
+                /* ── Subtle parallax on card images ── */
+                if (!reduceMotion) {
+                    var imgs = document.querySelectorAll(".card-image img");
+                    var ticking = false;
+
+                    function updateParallax() {
+                        var vh = window.innerHeight;
+                        imgs.forEach(function (img) {
+                            var rect = img.getBoundingClientRect();
+                            if (rect.bottom < 0 || rect.top > vh) return;
+                            var center = rect.top + rect.height / 2;
+                            var progress = (center - vh / 2) / (vh / 2);
+                            progress = Math.max(-1, Math.min(1, progress));
+                            var offset = progress * -8;
+                            img.style.transform =
+                                "translate3d(0," +
+                                offset.toFixed(2) +
+                                "px,0) scale(1.08)";
+                        });
+                        ticking = false;
+                    }
+
+                    window.addEventListener(
+                        "scroll",
+                        function () {
+                            if (!ticking) {
+                                window.requestAnimationFrame(updateParallax);
+                                ticking = true;
+                            }
+                        },
+                        { passive: true },
+                    );
+                    window.addEventListener("resize", updateParallax, {
+                        passive: true,
+                    });
+                    updateParallax();
+                }
+            })();
+        </script>
     </body>
 </html>
