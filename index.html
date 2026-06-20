@@ -197,10 +197,45 @@
                 animation: fadeUp 0.7s ease 1s forwards;
             }
 
-            .hero-actions {
-                margin-top: 2.5rem;
+            .networks {
+                display: flex;
+                gap: 0.6rem;
+                margin-top: 1.5rem;
                 opacity: 0;
-                animation: fadeUp 0.7s ease 1.15s forwards;
+                animation: fadeUp 0.7s ease 1.1s forwards;
+            }
+
+            .net-chip {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 100px;
+                padding: 0.4rem 0.9rem;
+                font-size: 0.82rem;
+                font-weight: 600;
+                color: var(--text);
+            }
+
+            .net-chip .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+            }
+
+            .net-chip .dot.sui {
+                background: #4da2ff;
+            }
+
+            .net-chip .dot.sol {
+                background: linear-gradient(135deg, #9945ff, #14f195);
+            }
+
+            .hero-actions {
+                margin-top: 2rem;
+                opacity: 0;
+                animation: fadeUp 0.7s ease 1.25s forwards;
             }
 
             .btn-mailto {
@@ -495,13 +530,18 @@
             </div>
 
             <div class="hero-badge">
-                <span></span> Built on Sui &middot; Now in beta
+                <span></span> Built on Sui &amp; Solana &middot; Now in beta
             </div>
-            <h1>Simplest way to <em>start accepting payments on Sui</em></h1>
+            <h1>Simplest way to <em>accept crypto on Sui &amp; Solana</em></h1>
             <p class="hero-sub">
-                ArcPay makes it easy to accept, move, and manage crypto on the
-                Sui network, with complex features for all your needs.
+                ArcPay makes it easy to accept, move, and manage crypto across
+                the Sui and Solana networks, with complex features for all your
+                needs.
             </p>
+            <div class="networks">
+                <span class="net-chip"><span class="dot sui"></span> Sui</span>
+                <span class="net-chip"><span class="dot sol"></span> Solana</span>
+            </div>
             <div class="hero-actions">
                 <a class="btn-mailto" href="mailto:arcpay.to@proton.me">
                     <svg
@@ -615,10 +655,10 @@
                             <span>Replace <code>card-4.png</code></span>
                         </div>
                     </div>
-                    <h3>Native to Sui</h3>
+                    <h3>Multi-chain by design</h3>
                     <p>
-                        Built on the Sui network for sub-second finality and
-                        near-zero fees. Accept payments in SUI and other assets,
+                        Built on Sui and Solana for sub-second finality and
+                        near-zero fees. Accept SUI, SOL, USDC and other assets,
                         and settle in your preferred currency with automatic FX
                         handling.
                     </p>
