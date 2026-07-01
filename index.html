@@ -17,6 +17,7 @@
             href="/apple-touch-icon.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+<<<<<<< HEAD
         <!-- Google tag (gtag.js) -->
         <script
             async
@@ -33,6 +34,9 @@
         </script>
         <!-- End of >>  Google tag (gtag.js) -->
         <title>ArcPay | Crypto Payments, Complex</title>
+=======
+        <title>ArcPay | Crypto Payments</title>
+>>>>>>> b41f5ae6e0b963893f1bb559bdea284fc527e402
         <style>
             *,
             *::before,
@@ -288,6 +292,41 @@
                 box-shadow: 0 8px 30px rgba(255, 228, 0, 0.4);
             }
 
+            /* ── Secondary / outline button ── */
+            .btn-outline {
+                background: transparent;
+                color: var(--text);
+                border: 1px solid var(--border);
+                box-shadow: none;
+            }
+
+            .btn-outline:hover {
+                opacity: 1;
+                border-color: rgba(255, 228, 0, 0.4);
+                box-shadow: none;
+            }
+
+            /* ── Grouped hero actions ── */
+            .hero-actions {
+                display: flex;
+                gap: 0.75rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            /* ── Grouped nav actions ── */
+            .nav-actions {
+                display: flex;
+                align-items: center;
+                gap: 0.65rem;
+            }
+
+            @media (max-width: 640px) {
+                .nav-actions .btn-outline {
+                    display: none;
+                }
+            }
+
             /* ── Feature cards ── */
             .features {
                 padding: 6rem 1.5rem;
@@ -517,23 +556,45 @@
                 </svg>
                 ArcPay
             </a>
-            <a class="btn-mailto" href="mailto:arcpay.to@proton.me">
-                <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
+            <div class="nav-actions">
+                <a
+                    class="btn-mailto btn-outline"
+                    href="mailto:arcpay.to@proton.me"
                 >
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-                Get in touch
-            </a>
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    Get in touch
+                </a>
+                <a class="btn-mailto" href="https://app.arcpay.to">
+                    Launch App
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
         </nav>
 
         <!-- Hero -->
@@ -558,9 +619,9 @@
             </div>
             <h1>Simplest way to <em>accept crypto on Sui &amp; Solana</em></h1>
             <p class="hero-sub">
-                ArcPay makes it easy to accept, move, and manage crypto across
-                the Sui and Solana networks, with complex features for all your
-                needs.
+                ArcPay makes accepting, moving, and managing crypto effortless
+                across Sui and Solana, with powerful features for every part of
+                your workflow.
             </p>
             <div class="networks">
                 <span class="net-chip"><span class="dot sui"></span> Sui</span>
@@ -569,7 +630,27 @@
                 >
             </div>
             <div class="hero-actions">
-                <a class="btn-mailto" href="mailto:arcpay.to@proton.me">
+                <a class="btn-mailto" href="https://app.arcpay.to">
+                    Launch App
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+                <a
+                    class="btn-mailto btn-outline"
+                    href="mailto:arcpay.to@proton.me"
+                >
                     <svg
                         width="16"
                         height="16"
